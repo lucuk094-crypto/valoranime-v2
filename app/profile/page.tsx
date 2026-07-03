@@ -60,6 +60,10 @@ export default function ProfilePage() {
   const [showcase, setShowcase] = useState<any[]>([]);
   const [followersCount, setFollowersCount] = useState(0);
   const [followingCount, setFollowingCount] = useState(0);
+  
+  // Real-time level & exp states (fetch langsung dari Supabase)
+  const [userLevel, setUserLevel] = useState(1);
+  const [userExp, setUserExp] = useState(0);
 
   // Helper to format proper URL for history and bookmarks
   const formatItemHref = (item: any) => {
@@ -118,11 +122,41 @@ export default function ProfilePage() {
     const savedTheme = localStorage.getItem('profileTheme') || 'amber';
     setThemeColor(savedTheme);
     if (user) fetchData();
+    
+    // Auto-refresh stats setiap 10 detik untuk mendapat data terbaru dari Supabase
+    const refreshInterval = setInterval(() => {
+      if (user) {
+        fetch('/api/user/stats')
+          .then(res => res.json())
+          .then(stats => {
+            setUserLevel(stats.level || 1);
+            setUserExp(stats.exp || 0);
+          })
+          .catch(err => console.error('Failed to refresh stats:', err));
+      }
+    }, 10000); // Refresh setiap 10 detik
+    
+    return () => clearInterval(refreshInterval);
   }, [user]);
 
   const fetchData = async () => {
     if (!user) return;
     setLoadingData(true);
+    
+    // Fetch level & exp terbaru dari Supabase (real-time)
+    try {
+      const statsRes = await fetch('/api/user/stats');
+      if (statsRes.ok) {
+        const stats = await statsRes.json();
+        setUserLevel(stats.level || 1);
+        setUserExp(stats.exp || 0);
+      }
+    } catch (e) {
+      console.error('Failed to fetch user stats:', e);
+      // Fallback ke user metadata jika API gagal
+      setUserLevel(user.user_metadata?.level || 1);
+      setUserExp(user.user_metadata?.exp || 0);
+    }
     
     const { data: actData } = await supabase.from('user_activities').select('*').eq('user_id', user.id).order('created_at', { ascending: false }).limit(50);
     if (actData) setActivities(actData);
@@ -385,14 +419,18 @@ export default function ProfilePage() {
     );
   }
 
+  // Data states untuk level dan exp dari database (real-time)
+  const [userLevel, setUserLevel] = useState(user.user_metadata?.level || 1);
+  const [userExp, setUserExp] = useState(user.user_metadata?.exp || 0);
+
   const displayName = user.user_metadata?.display_name || user.email?.split('@')[0] || 'Pengguna';
   const avatarUrl = user.user_metadata?.avatar_url || '/avatar.jpeg';
   const bannerUrl = user.user_metadata?.banner_url || '';
   const isVerified = user.user_metadata?.is_verified || false;
   const role = user.user_metadata?.role || 'User';
   const isSpecial = role === 'Developer' || role === 'Admin' || role === 'Moderator' || isVerified;
-  const level = user.user_metadata?.level || 1;
-  const currentExp = user.user_metadata?.exp || 0;
+  const level = userLevel;
+  const currentExp = userExp;
   const expNeeded = level * 100;
   const expPercentage = Math.min(100, Math.round((currentExp / expNeeded) * 100));
   const totalExp = ((level - 1) * 100) + currentExp; 

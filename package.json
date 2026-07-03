@@ -10,7 +10,8 @@
     "create-admin": "tsx scripts/create-first-admin.ts",
     "test-supabase": "tsx scripts/test-supabase-connection.ts",
     "reset-password": "tsx scripts/reset-admin-password.ts",
-    "quick-admin": "tsx scripts/quick-create-admin.ts"
+    "quick-admin": "tsx scripts/quick-create-admin.ts",
+    "sync-admin": "tsx scripts/sync-admin-to-supabase.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",

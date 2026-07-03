@@ -14,10 +14,10 @@ config({ path: '.env.local' });
 // 📝 EDIT DATA ADMIN DI SINI:
 // ============================================
 const ADMIN_DATA = {
-  email: 'test@valoranime.com',       // ✏️ Ganti dengan email yang diinginkan
-  password: 'test123456',             // ✏️ Ganti dengan password baru (min 6 karakter)
-  displayName: 'Test User',           // ✏️ Ganti dengan nama tampilan
-  role: 'User',                       // Role: Superadmin, Admin, atau User
+  email: 'alwismith76@gmail.com',       // ✏️ Ganti dengan email yang diinginkan
+  password: 'Admin313',             // ✏️ Ganti dengan password baru (min 6 karakter)
+  displayName: 'Alwiy313',           // ✏️ Ganti dengan nama tampilan
+  role: 'Superadmin',                       // Role: Superadmin, Admin, atau User
 };
 // ============================================
 
