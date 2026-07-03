@@ -34,8 +34,10 @@ export async function verifyAdminSession(): Promise<{ user: AuthUser; error?: st
 
     // Check if admin
     const role = user.user_metadata?.role || 'User';
-    if (role !== 'Admin' && role !== 'Superadmin') {
-      return { user: null as any, error: 'Akses ditolak. Hanya admin yang bisa mengakses' };
+    const allowedRoles = ['Admin', 'Superadmin', 'Developer', 'Moderator'];
+    
+    if (!allowedRoles.includes(role)) {
+      return { user: null as any, error: 'Akses ditolak. Hanya admin/developer yang bisa mengakses' };
     }
 
     // Get profile data

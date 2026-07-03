@@ -28,11 +28,13 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Check if user is admin
+    // Check if user is admin/developer
     const role = data.user?.user_metadata?.role || 'User';
-    if (role !== 'Admin' && role !== 'Superadmin') {
+    const allowedRoles = ['Admin', 'Superadmin', 'Developer', 'Moderator'];
+    
+    if (!allowedRoles.includes(role)) {
       return NextResponse.json(
-        { error: 'Akses ditolak. Hanya admin yang bisa login di sini' },
+        { error: 'Akses ditolak. Hanya admin/developer yang bisa login di sini' },
         { status: 403 }
       );
     }
