@@ -1,0 +1,72 @@
+╔══════════════════════════════════════════════════════════════════════════╗
+║           VERCEL ENVIRONMENT VARIABLES SETUP                             ║
+║              Copy dan paste ke Vercel Dashboard                          ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+Saat deploy di Vercel, tambahkan 3 environment variables ini:
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+VARIABLE 1:
+───────────────────────────────────────────────────────────────────────────
+Name (Key):
+NEXT_PUBLIC_SUPABASE_URL
+
+Value:
+https://vecrgajrdhicqvggpbea.supabase.co
+
+Environment:
+☑ Production
+☑ Preview
+☑ Development
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+VARIABLE 2:
+───────────────────────────────────────────────────────────────────────────
+Name (Key):
+NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+Value:
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZlY3JnYWpyZGhpY3F2Z2dwYmVhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMwNDQ2OTQsImV4cCI6MjA5ODYyMDY5NH0.nmXs_vOmEATuxMqpBFUjqhogJ_EfTtB5AV9itazp0mk
+
+Environment:
+☑ Production
+☑ Preview
+☑ Development
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+VARIABLE 3:
+───────────────────────────────────────────────────────────────────────────
+Name (Key):
+SUPABASE_SERVICE_ROLE_KEY
+
+Value:
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZlY3JnYWpyZGhpY3F2Z2dwYmVhIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MzA0NDY5NCwiZXhwIjoyMDk4NjIwNjk0fQ.jjmR_MPQuZDR5P1V-YIkSCkiQ3dK2HHcwJnC-ynpHAs
+
+Environment:
+☑ Production
+☑ Preview
+☑ Development
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+⚠️ PENTING:
+- Pastikan centang SEMUA environment (Production, Preview, Development)
+- Jangan ada spasi di awal/akhir value
+- Copy paste PERSIS seperti di atas
+
+✅ Setelah semua diisi, klik "Deploy"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+TESTING:
+Setelah deploy berhasil, test di:
+https://your-domain.vercel.app/admin/login
+
+Login dengan:
+Email: admin@valoranime.com
+Password: newpassword123
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
