@@ -14,7 +14,8 @@
     "sync-admin": "tsx scripts/sync-admin-to-supabase.ts",
     "update-level": "tsx scripts/quick-update-level-exp.ts",
     "sync-profiles": "tsx scripts/sync-level-exp-to-profiles.ts",
-    "check-sync": "tsx scripts/check-and-fix-sync.ts"
+    "check-sync": "tsx scripts/check-and-fix-sync.ts",
+    "fix-login": "tsx scripts/fix-login-issue.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",
