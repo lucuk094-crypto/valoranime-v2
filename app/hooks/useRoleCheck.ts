@@ -16,10 +16,12 @@ export function useRoleCheck(requiredRole: 'admin' | 'user' = 'user') {
       return;
     }
 
-    // Check user role from metadata
-    const userRole = user.user_metadata?.role || 'user';
+    // Check user role from metadata (case-insensitive & support multiple admin roles)
+    const userRole = (user.user_metadata?.role || 'user').toLowerCase();
+    const allowedAdminRoles = ['admin', 'superadmin', 'developer', 'moderator'];
 
-    if (requiredRole === 'admin' && userRole !== 'admin') {
+    if (requiredRole === 'admin' && !allowedAdminRoles.includes(userRole)) {
+      console.warn(`Access denied for role: ${userRole}`);
       router.push('/');
       return;
     }
