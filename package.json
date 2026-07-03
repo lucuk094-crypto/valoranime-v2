@@ -16,7 +16,8 @@
     "sync-profiles": "tsx scripts/sync-level-exp-to-profiles.ts",
     "check-sync": "tsx scripts/check-and-fix-sync.ts",
     "fix-login": "tsx scripts/fix-login-issue.ts",
-    "set-admin": "tsx scripts/change-to-admin-role.ts"
+    "set-admin": "tsx scripts/change-to-admin-role.ts",
+    "fix-all": "tsx scripts/comprehensive-admin-fix.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",

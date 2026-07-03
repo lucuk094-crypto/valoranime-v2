@@ -16,9 +16,9 @@ const ADMIN_DATA = {
   email: 'alwismith76@gmail.com',
   password: 'Admin313',
   displayName: 'Alwiy313',
-  role: 'Superadmin',
-  level: 99,
-  exp: 0,
+  role: 'admin',
+  level: 999,
+  exp: 9999999,
 };
 
 async function main() {
