@@ -419,10 +419,6 @@ export default function ProfilePage() {
     );
   }
 
-  // Data states untuk level dan exp dari database (real-time)
-  const [userLevel, setUserLevel] = useState(user.user_metadata?.level || 1);
-  const [userExp, setUserExp] = useState(user.user_metadata?.exp || 0);
-
   const displayName = user.user_metadata?.display_name || user.email?.split('@')[0] || 'Pengguna';
   const avatarUrl = user.user_metadata?.avatar_url || '/avatar.jpeg';
   const bannerUrl = user.user_metadata?.banner_url || '';
