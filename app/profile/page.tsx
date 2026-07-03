@@ -244,6 +244,9 @@ export default function ProfilePage() {
           const { url } = await uploadRes.json();
           await updateUserMeta({ banner_url: url });
           await supabase.from('profiles').update({ banner_url: url }).eq('id', user?.id);
+          
+          // Refresh page untuk update banner
+          window.location.reload();
         }
       } catch { alert('Gagal mengupload banner'); }
       finally { setIsUploadingBanner(false); }
@@ -264,6 +267,9 @@ export default function ProfilePage() {
       await updateUserMeta({ display_name: editName, avatar_url: finalAvatarUrl, bio: editBio });
       await supabase.from('profiles').update({ bio: editBio }).eq('id', user?.id);
       setShowEditModal(false);
+      
+      // Refresh page untuk update profil
+      window.location.reload();
     } catch { alert('Terjadi kesalahan saat mengupdate profil'); }
     finally { setIsUpdating(false); }
   };
