@@ -13,7 +13,8 @@
     "quick-admin": "tsx scripts/quick-create-admin.ts",
     "sync-admin": "tsx scripts/sync-admin-to-supabase.ts",
     "update-level": "tsx scripts/quick-update-level-exp.ts",
-    "sync-profiles": "tsx scripts/sync-level-exp-to-profiles.ts"
+    "sync-profiles": "tsx scripts/sync-level-exp-to-profiles.ts",
+    "check-sync": "tsx scripts/check-and-fix-sync.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",
