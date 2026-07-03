@@ -88,7 +88,7 @@ async function main() {
         .from('profiles')
         .upsert({
           id: existingUser.id,
-          display_name: ADMIN_DATA.displayName,
+          username: ADMIN_DATA.displayName,
           level: ADMIN_DATA.level,
           exp: ADMIN_DATA.exp,
         }, {
@@ -97,6 +97,8 @@ async function main() {
 
       if (profileError) {
         console.log(`⚠️ Warning profile: ${profileError.message}`);
+      } else {
+        console.log('✅ Profile table berhasil di-update!');
       }
 
       console.log('\n✅ USER BERHASIL DI-UPDATE!\n');
@@ -134,13 +136,15 @@ async function main() {
       // Create profile
       const { error: profileError } = await supabase.from('profiles').insert({
         id: data.user.id,
-        display_name: ADMIN_DATA.displayName,
+        username: ADMIN_DATA.displayName,
         level: ADMIN_DATA.level,
         exp: ADMIN_DATA.exp,
       });
 
       if (profileError) {
         console.log(`⚠️ Warning profile: ${profileError.message}`);
+      } else {
+        console.log('✅ Profile table berhasil dibuat!');
       }
 
       console.log('\n✅ ADMIN BARU BERHASIL DIBUAT!\n');

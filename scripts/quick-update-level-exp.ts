@@ -14,8 +14,8 @@ config({ path: '.env.local' });
 // ============================================
 const UPDATE_DATA = {
   email: 'alwismith76@gmail.com',  // Email user yang mau diupdate
-  level: 50,                       // Level baru (1-99)
-  exp: 2500,                       // EXP baru (0 - level*100)
+  level: 75,                       // Level baru (1-99)
+  exp: 5000,                       // EXP baru (0 - level*100)
 };
 // ============================================
 
@@ -67,7 +67,7 @@ async function main() {
     console.log(`   EXP sekarang: ${user.user_metadata?.exp || 0}\n`);
 
     // Step 2: Update user metadata
-    console.log('🔄 Mengupdate level & EXP...');
+    console.log('🔄 Mengupdate level & EXP di auth.users...');
 
     const { error: updateError } = await supabase.auth.admin.updateUserById(user.id, {
       user_metadata: {
@@ -78,7 +78,27 @@ async function main() {
     });
 
     if (updateError) {
-      throw new Error(`Gagal update: ${updateError.message}`);
+      throw new Error(`Gagal update auth.users: ${updateError.message}`);
+    }
+
+    // Step 3: Update tabel profiles juga
+    console.log('🔄 Mengupdate level & EXP di tabel profiles...');
+
+    const { error: profileError } = await supabase
+      .from('profiles')
+      .upsert({
+        id: user.id,
+        level: UPDATE_DATA.level,
+        exp: UPDATE_DATA.exp,
+      }, {
+        onConflict: 'id',
+        ignoreDuplicates: false,
+      });
+
+    if (profileError) {
+      console.log(`⚠️ Warning: Gagal update profiles: ${profileError.message}`);
+    } else {
+      console.log('✅ Profiles table berhasil di-update!');
     }
 
     console.log('\n✅ UPDATE BERHASIL!\n');
